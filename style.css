@@ -196,3 +196,58 @@ body{
 .opcao p{
     margin: 12px 0;
 }
+
+.comece-pelo-comeco{
+    margin-top: 71px;
+    margin-bottom: 27px;
+    display: flex;
+    justify-content: center;
+
+}
+
+.comece-pelo-comeco p{
+    color: #000000;
+    font-family: "Roboto";
+    font-weight: 700;
+    font-size: 23px;
+}
+
+.info-do-quiz{
+    width: 600px;
+    height: 256px;
+    background-color: white;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    margin-bottom: 85px;
+}
+
+.info-do-quiz input{
+    width: 564px;
+    height: 46px;
+    color: #d1d1d1;
+    border: 1px solid #D1D1D1;
+    font-size: 19px;
+    display: flex;
+    align-items: center;
+    border-radius: 5px;
+    padding-left: 10px;
+}
+
+
+.prosseguir-para-quiz{
+    width: 367px;
+    height: 54px;
+    font-size: 21px;
+    color: white;
+    background-color: #EC362D;
+    border-radius: 10px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 0 auto;
+}
