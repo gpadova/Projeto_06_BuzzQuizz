@@ -61,7 +61,6 @@ body{
     padding: 10px;
 }
 
-
 .seus-quizes{
     display: flex;
     flex-direction: column;
@@ -73,10 +72,12 @@ body{
     justify-content: flex-start;
     align-items: center;
     margin: 138px 0 13px;
+
 }
 
 .seus-quizes img{
     margin-right: 15px;
+    max-width: 1050px;
 }
 
 .todos-seus-quizes p, .todos-os-quizes p{
@@ -88,7 +89,6 @@ body{
 .todos-seus-quizes ion-icon{
     color: #EC362D;
     font-size: 31px;
-    
 }
 
 .escondido{
@@ -126,6 +126,10 @@ body{
 .fotos-todos-quizzes img{
     width: 340px;
     height: 181px;
+}
+
+.tela-quiz{
+    width: 100%;
 }
 
 .quiz{
