@@ -1,14 +1,14 @@
 function pegarQuizzesAPI(){
     const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
-    promessa.then(disponibilizarNaTela)
+    promessa.then(disponibilizarQuizzesNaTela)
     
 }
 
 pegarQuizzesAPI()
 
-function disponibilizarNaTela(resposta){
+function disponibilizarQuizzesNaTela(resposta){
     const lugarQuizesServidor = document.querySelector(".fotos-todos-quizzes");
-    document.querySelector('.todos-os-quizes').classList.remove("escondido")
+    // document.querySelector('.todos-os-quizes').classList.remove("escondido")
     
     for(let i = 0; i < resposta.data.length; i++){
         lugarQuizesServidor.innerHTML += `
