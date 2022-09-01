@@ -28,7 +28,7 @@ let arrayPerguntas;
 let arrayNiveis;
 
 function comecePeloComeco(){
-    escolherTitulo = document.querySelector(".titulo-do-quiz").value;
+    escolherTitulo = document.querySelector(".titulo-do-quizz").value;
     escolherImagem = document.querySelector(".url-da-imagem-quizz").value;
     nDePerguntas = document.querySelector(".quantidade-perguntas-quizz").value;
     nDeNiveis = document.querySelector(".quantidade-niveis-quiz").value;
