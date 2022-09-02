@@ -126,6 +126,7 @@ body{
 .fotos-todos-quizzes img{
     width: 340px;
     height: 181px;
+    border-radius: 5px;
 }
 
 .tela-quizz{
