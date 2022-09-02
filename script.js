@@ -6,13 +6,37 @@ let arrayDeDados = []
 
 const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
 promessa.then(disponibilizarQuizzesNaTela)
+let quizzCriado;
+let escolherTitulo;
+let escolherImagem;
+let nDePerguntas;
+let nDeNiveis;
+let arrayPerguntas;
+let arrayNiveis;
+const arrayLocalStorage = []
+
+
+function verificarQualDisplayInicial(){
+    document.querySelector('.tela-quizzes-disponiveis.escondido').classList.remove('escondido')
+    if(arrayLocalStorage.length !== 0){
+        document.querySelector('.seus-quizes').classList.remove('escondido')
+        listaQuizzesLocais()
+    }
+}
+verificarQualDisplayInicial()
+
+
+function pegarQuizzesAPI(){
+    const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
+    promessa.then(disponibilizarQuizzesNaTela)   
+}
 
 
 function disponibilizarQuizzesNaTela(resposta){
-
-    // document.querySelector('.todos-os-quizes').classList.remove("escondido")
+    const lugarQuizesServidor = document.querySelector(".fotos-todos-quizzes");
+    document.querySelector('.todos-os-quizzes').classList.remove("escondido")
     
-    for(let i = 0; i < resposta.data.length; i++){
+    for(let i = 0; i < 6; i++){
         lugarQuizesServidor.innerHTML += `
         <div id="${resposta.data[i].id}" class="imagem-do-quiz" onclick="escolherQuizz(this);">
             <img src="${resposta.data[i].image}" alt="">
@@ -53,14 +77,11 @@ function fazerQuizz(){
     }
     
 }
-
-let quizzCriado;
-let escolherTitulo;
-let escolherImagem;
-let nDePerguntas;
-let nDeNiveis;
-let arrayPerguntas;
-let arrayNiveis;
+function vaiParaCriacaoQuiz(){
+    document.querySelector('.tela-quizzes-disponiveis').classList.add('escondido');
+    document.querySelector('.todos-os-quizzes').classList.add('escondido');
+    document.querySelector('.tela-de-informacoes-quizz').classList.remove('escondido');
+}
 
 function validoURL(str) {
 	var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
