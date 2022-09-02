@@ -19,7 +19,7 @@ function disponibilizarQuizzesNaTela(resposta){
         `
     }
 }
-
+let quizzCriado;
 let escolherTitulo;
 let escolherImagem;
 let nDePerguntas;
@@ -165,9 +165,19 @@ function lerInputCriarNiveis(){
 		paginaCriarNiveis.classList.add("escondido");
 		const paginaQuizzPronto = document.querySelector(".quizz-esta-pronto");
 		paginaCriarNiveis.classList.remove("escondido");
-		carregarCriarNiveis()
+		carregarCriarQuizzPronto()
 	}
 	else{
 		alert("Preencha os dados corretamente, por favor.")
 	}
+}
+
+function carregarCriarQuizzPronto(){
+	quizzCriado = {
+		title: escolherTitulo,
+		image: escolherImagem,
+		questions: arrayPerguntas,
+		levels: arrayNiveis,
+	}
+	//fazer upload usando axios
 }
