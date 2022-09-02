@@ -45,8 +45,6 @@ function vaiParaCriacaoQuiz(){
     document.querySelector('.tela-de-informacoes-quizz').classList.remove('escondido');
 }
 
-
-
 function validoURL(str) {
 	var regex = /(?:https?):\/\/(\w+:?\w*)?(\S+)(:\d+)?(\/|\/([\w#!:.?+=&%!\-\/]))?/;
 	if(!regex .test(str)) {
