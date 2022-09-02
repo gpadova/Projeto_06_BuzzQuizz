@@ -16,52 +16,81 @@
         <div class="header">
             <p>Buzz Quizz </p>
         </div>
-        <div class="tela-quizes-disponiveis">
+        <div class="tela-quizzes-disponiveis escondido">
             <div class="conteudo">
-                <div class="sem-quiz-criado">
+                <div class="sem-quizz-criado">
                     <h2>Você ainda não criou nenhum quizz ainda ):</h2>
                     <p>Criar quiz</p>
                 </div>
-                <div class="seus-quizes escondido">
-                    <div class="todos-seus-quizes">
+                <div class="seus-quizzes escondido">
+                    <div class="todos-seus-quizzes">
                         <p>Seus Quizzes</p>
                         <ion-icon name="add-circle"></ion-icon>
                     </div>
-                    <div class="imagens-seus-quizes">
-                        <div class="imagem-do-quiz">
+                    <div class="imagens-seus-quizzes">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do Quizz</div>
                         </div>
-                        <div class="imagem-do-quiz">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do Quizz</div>
                         </div>
                     </div>
                 </div>
-                <div class="todos-os-quizes">
+            </div>
+            <div class="todos-os-quizzes escondido">
+                <p>Todos os Quizzes</p>
+                <div class="fotos-todos-quizzes">
+                    <div class="imagem-do-quizz">
+                        <img src="./images/Rectangle 34.png" alt="">
+                        <div class="texto-em-cima-foto">Titulo do quizz</div>
+                    </div>
+                    <div class="imagem-do-quizz">
+                        <img src="./images/Rectangle 34.png" alt="">
+                        <div class="texto-em-cima-foto">Titulo do quizz</div>
+                    </div>
+                    <div class="imagem-do-quizz">
+                        <img src="./images/Rectangle 34.png" alt="">
+                        <div class="texto-em-cima-foto">Titulo do quizz</div>
+                    </div>
+                    <div class="imagem-do-quizz">
+                        <img src="./images/Rectangle 34.png" alt="">
+                        <div class="texto-em-cima-foto">Titulo do quizz</div>
+                    </div>
+                    <div class="imagem-do-quizz">
+                        <img src="./images/Rectangle 34.png" alt="">
+                        <div class="texto-em-cima-foto">Titulo do quizz</div>
+                    </div>
+                    <div class="imagem-do-quizz">
+                        <img src="./images/Rectangle 34.png" alt="">
+                        <div class="texto-em-cima-foto">Titulo do quizz</div>
+                    </div>
+
+                <div class="todos-os-quizzes">
                     <p>Todos os Quizzes</p>
                     <div class="fotos-todos-quizzes">
-                        <div class="imagem-do-quiz" onclick="escolherQuizz(this);">
+                        <div class="imagem-do-quizz" onclick="escolherQuizz(this);">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do quizz</div>
                         </div>
-                        <div class="imagem-do-quiz">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do quizz</div>
                         </div>
-                        <div class="imagem-do-quiz">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do quizz</div>
                         </div>
-                        <div class="imagem-do-quiz">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do quizz</div>
                         </div>
-                        <div class="imagem-do-quiz">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do quizz</div>
                         </div>
-                        <div class="imagem-do-quiz">
+                        <div class="imagem-do-quizz">
                             <img src="./images/Rectangle 34.png" alt="">
                             <div class="texto-em-cima-foto">Titulo do quizz</div>
                         </div>                        
@@ -69,9 +98,9 @@
                 </div>
             </div>
         </div>
-        <div class="tela-quiz escondido">
-            <div class="quiz">
-                <div class="nome-do-quiz">
+        <div class="tela-quizz escondido">
+            <div class="quizz">
+                <div class="nome-do-quizz">
                     <p>O quão Potterhead é você?</p>
                 </div>
                 <div class="questao"> 
@@ -122,57 +151,46 @@
                 </div>
             </div>
         </div>
-    
-        <div class="tela-de-informacoes-quiz escondido">
+    </div>
+
+    <div class="tela-de-informacoes-quizz escondido">
+        <div class="comece-pelo-comeco">
+            <p>Comece pelo Começo</p>
+        </div>
+        <div class="info-do-quizz">
+            <input class="titulo-do-quizz" placeholder="Título do seu quizz">
+            <input class="url-da-imagem-quizz" placeholder="URL da imagem do seu quizz">
+            <input class="quantidade-perguntas-quizz" placeholder="Quantidade de perguntas do quiz">
+            <input class="quantidade-niveis-quiz" placeholder="Quantidade de níveis do quizz">
+            
+        </div>
+        <div class="prosseguir-para-quizz">
+            Prosseguir para criar perguntas
+        </div>
+    </div>
+
+    <div class="criando-quizz escondido">
+        <div class="tela-de-informacoes-quizz escondido">
             <div class="comece-pelo-comeco">
                 <p>Comece pelo Começo</p>
             </div>
-            <div class="info-do-quiz">
-                <input class="titulo-do-quiz" placeholder="Título do seu quizz">
+            <div class="info-do-quizz">
+                <input class="titulo-do-quizz" placeholder="Título do seu quizz">
                 <input class="url-da-imagem-quizz" placeholder="URL da imagem do seu quizz">
                 <input class="quantidade-perguntas-quizz" placeholder="Quantidade de perguntas do quiz">
                 <input class="quantidade-niveis-quiz" placeholder="Quantidade de níveis do quizz">
                 
             </div>
-            <div class="prosseguir-para-quiz">
+            <div class="prosseguir-para-quizz" onclick="carregarCriarPerguntas()">
                 Prosseguir para criar perguntas
             </div>
         </div>
     
-        <div class="criando-perguntas-quiz escondido">
+        <div class="criando-perguntas-quizz escondido">
             <div class="crie-suas-perguntas">Crie suas peguntas</div>
             <div class="caixa-das-perguntas">
-                <div class="pergunta1">
-                    <p class="pergunta1">Pergunta 1</p>
-                    <input type="text" class="texto-da-pergunta" placeholder="Texto da pergunta">
-                    <input type="text" class="cor-do-fundo-pergunta" placeholder="Cor de fundo da pergunta">
-                </div>
-                <div class="resposta-correta">
-                    <p class="resposta-correta">Resposta correta</p>
-                    <input type="text" class="texto-da-pergunta" placeholder="Resposta correta">
-                    <input type="text" class="url-da-imagem-correta" placeholder="URL da imagem">
-                </div>
-                <div class="resposta-incorreta">
-                    <p class="resposta-incorreta">Resposta correta</p>
-                    <input type="text" class="texto-da-pergunta" placeholder="Resposta incorreta 1">
-                    <input type="text" class="url-imagem-incorreta" placeholder="URL da imagem 1 ">
-                    <input type="text" class="resposta-incorreta-2" placeholder="Resposta incorreta 2">
-                    <input type="text" class="url-da-imagem-2" placeholder="URL da imagem 2">
-                    <input type="text" class="resposta-incorreta-3" placeholder="Resposta incorreta 3">
-                    <input type="text" class="url-da-imagem-3" placeholder="URL de imagem 3">
-                </div>
             </div>
-    
-            <div class="pergunta2">
-                <p>Pergunta 2</p>
-                <ion-icon name="create-outline"></ion-icon>
-            </div>
-            <div class="pergunta3">
-                <p>Pergunta 3</p>
-                <ion-icon name="create-outline"></ion-icon>
-            </div>
-    
-            <div class="prosseguir-pra-criar-niveis">
+            <div class="prosseguir-pra-criar-niveis" onclick=" lerInputCriarPerguntas()">
                 <p>Prosseguir pra criar níveis </p>
             </div>
         </div> 
@@ -180,29 +198,16 @@
         <div class="niveis-quizz escondido">
             <p>Agora decida os níveis</p>
             <div class="caixa-info-niveis">
-                <p>Nível 1</p>
-                <input type="text" class="titulo-nivel" placeholder="Título do nível">
-                <input type="number" class="porcentagem-minima" placeholder="% de acerto mínima">
-                <input type="url" class="url-imagem-nivel" placeholder="URL da imagem do nível">
-                <input type="text" class="descricao-nivel" placeholder="Descrição do nível">
             </div>
-            <div class="nivel2">
-                <p>Nivel 2</p>
-                <ion-icon name="create-outline"></ion-icon>
-            </div>
-            <div class="nivel3">
-                <p>Nivel 3</p>
-                <ion-icon name="create-outline"></ion-icon>
-            </div>
-            <div class="finalizar-quizz">
+            <div class="finalizar-quizz" onclick = "lerInputCriarNiveis()">
                 <p>Finalizar Quizz</p>
             </div>
         </div>
     
-        <div class="quiz-esta-pronto, escondido">
+        <div class="quizz-esta-pronto escondido">
             <p>Seu quiz está pronto!</p>
             <div class="imagem-e-titulo"><p>Título do Quiz récem criado</p></div>
-            <div class="acessa-quiz">Acessar o quiz</div>
+            <div class="acessa-quizz">Acessar o quiz</div>
             <div class="voltar-para-home">Voltar para home</div>
         </div>
     </div>
