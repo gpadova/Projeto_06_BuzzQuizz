@@ -47,6 +47,10 @@ function carregarCriarPerguntas(){
     nDeNiveis = document.querySelector(".quantidade-niveis-quizz").value;
 	if (nDeNiveis < 2) everythingOK = false;
 	if (everythingOK == true){
+		const infoCriarQuizz = document.querySelector(".tela-de-informacoes-quizz");
+		infoCriarQuizz.classList.add("escondido");
+		const paginaCriarPerguntas = document.querySelector(".criando-perguntas-quizz");
+		paginaCriarPerguntas.classList.remove("escondido");
 		criarPerguntasHTML()
 	}
 	else{
@@ -113,6 +117,10 @@ function lerInputCriarPerguntas(){
 		}
 	}
 	if (everythingOK == true){
+		const paginaCriarPerguntas= document.querySelector(".criando-perguntas-quizz");
+		paginaCriarPerguntas.classList.add("escondido");
+		const paginaCriarNiveis = document.querySelector(".niveis-quizz");
+		paginaCriarNiveis.classList.remove("escondido");
 		carregarCriarNiveis()
 	}
 	else{
@@ -138,12 +146,28 @@ function carregarCriarNiveis(){
 }
 
 function lerInputCriarNiveis(){
+	let everythingOK=true;
 	for(i = 1; i<=nDeNiveis;i++){
+		const titleCheck = document.querySelector(`.titulo-nivel${i}`).value;
+		const imageCheck =document.querySelector(`.url-imagem-nivel${i}`).value;
+		const textCheck = document.querySelector(`.descricao-nivel${i}`).value;
+		const minValueCheck = parseInt(document.querySelector(`.porcentagem-minima${i}`).value);
 		arrayNiveis[i-1] = {
 			title: document.querySelector(`.titulo-nivel${i}`).value,
 			image: document.querySelector(`.url-imagem-nivel${i}`).value,
 			text: document.querySelector(`.descricao-nivel${i}`).value,
 			minValue: parseInt(document.querySelector(`.porcentagem-minima${i}`).value),
 		}
+		
+	}
+	if (everythingOK == true){
+		const paginaCriarNiveis= document.querySelector(".niveis-quizz");
+		paginaCriarNiveis.classList.add("escondido");
+		const paginaQuizzPronto = document.querySelector(".quizz-esta-pronto");
+		paginaCriarNiveis.classList.remove("escondido");
+		carregarCriarNiveis()
+	}
+	else{
+		alert("Preencha os dados corretamente, por favor.")
 	}
 }
