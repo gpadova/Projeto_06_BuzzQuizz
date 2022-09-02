@@ -197,5 +197,17 @@ function carregarCriarQuizzPronto(){
 		questions: arrayPerguntas,
 		levels: arrayNiveis,
 	}
-	//fazer upload usando axios
+	
+}
+
+function uploadQuizzNaApi(){
+	const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', 
+	quizzCriado = {
+		title: escolherTitulo,
+		image: escolherImagem,
+		questions: arrayPerguntas,
+		levels: arrayNiveis,
+	})
+	promessa.then(alert('Enviado com sucesso!'))
+	promessa.catch(alert('Erro no envio'))
 }
