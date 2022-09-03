@@ -1,7 +1,8 @@
 const lugarQuizesServidor = document.querySelector(".fotos-todos-quizzes");
 const paginaDosQuizzes = lugarQuizesServidor.parentNode
-let telaQuizz = document.querySelector('.tela-quiz')
+let telaQuizz = document.querySelector('.tela-quizz')
 let arrayDeDados = []
+let quizzEscolhido;
 
 
 const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
@@ -13,11 +14,11 @@ let nDePerguntas;
 let nDeNiveis;
 let arrayPerguntas;
 let arrayNiveis;
-const arrayLocalStorage = []
+const arrayLocalStorage = [];
 
 
 function verificarQualDisplayInicial(){
-    document.querySelector('.tela-quizzes-disponiveis.escondido').classList.remove('escondido')
+    document.querySelector('.tela-quizzes-disponiveis .escondido').classList.remove('escondido')
     if(arrayLocalStorage.length !== 0){
         document.querySelector('.seus-quizes').classList.remove('escondido')
         listaQuizzesLocais()
@@ -49,33 +50,53 @@ function disponibilizarQuizzesNaTela(resposta){
 }
 
 function escolherQuizz(escolha){
-    let objeto;
+
     for (let i = 0; i < arrayDeDados.length; i++) {
         if (arrayDeDados[i].id == escolha.id){
-            objeto = (arrayDeDados[i]);
+            quizzEscolhido = (arrayDeDados[i]);
         }
     }
     paginaDosQuizzes.classList.add('escondido')
+	telaQuizz.classList.remove('escondido')
+	fazerQuizz()
 }
 
 function fazerQuizz(){
+	console.log(quizzEscolhido)
+	
     telaQuizz.classList.remove('escondido')
-    for (let i = 0; i < objeto.length; i++){
-        quizz.innerHTML += `
-        <div class="questao">
-            <div class="titulo-da-questao titulo">
-                <p>${objeto.questions[i].title}</p>
-            </div>
-            <div class="opcoes">
-                <div class="opcao">
-                    <img src="${objeto.questions[i].img}">
-                    <p>Gatíneo</p>
-                </div>
-            </div>
-        </div>
-       `
-    }
-    
+	
+	telaQuizz.innerHTML += `
+	<div class="quizz">
+		<div class="nome-do-quizz">
+			<img src="${quizzEscolhido.image}" alt="">
+			<p>${quizzEscolhido.title}</p>
+		</div>
+	`
+    for (let i = 0; i < quizzEscolhido.questions.length; i++){
+		telaQuizz.innerHTML += `
+		<div class="questao"> 
+			<div class="titulo-da-questao">
+				<p>${quizzEscolhido.title}</p>
+			</div>
+		`
+		for (let c = 0; c < quizzEscolhido.questions[i].answers.length; c++){
+			telaQuizz.innerHTML += `
+			<div class="opcoes">
+				<div class="opcao">
+					<img src="${quizzEscolhido.questions[i].answers[c].image} ${i} ${c}">
+					<p>${quizzEscolhido.questions[i].answers[c].text}</p>
+				</div>
+		   `
+		}
+	
+	
+	}
+	console.log(telaQuizz.innerHTML)
+
+	//<div class="titulo-da-questao">
+	// 
+	//
 }
 function vaiParaCriacaoQuiz(){
     document.querySelector('.tela-quizzes-disponiveis').classList.add('escondido');
