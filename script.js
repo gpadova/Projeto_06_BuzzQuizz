@@ -1,6 +1,6 @@
 const lugarQuizesServidor = document.querySelector(".fotos-todos-quizzes");
 const paginaDosQuizzes = lugarQuizesServidor.parentNode
-let telaQuizz = document.querySelector('.tela-quizz')
+let telaQuizz = document.querySelector('.quizz')
 let arrayDeDados = []
 let quizzEscolhido;
 
@@ -67,36 +67,41 @@ function fazerQuizz(){
     telaQuizz.classList.remove('escondido')
 	
 	telaQuizz.innerHTML += `
-	<div class="quizz">
 		<div class="nome-do-quizz">
 			<img src="${quizzEscolhido.image}" alt="">
 			<p>${quizzEscolhido.title}</p>
 		</div>
 	`
-    for (let i = 0; i < quizzEscolhido.questions.length; i++){
+	for (let i = 0; i < quizzEscolhido.questions.length; i++){
 		telaQuizz.innerHTML += `
-		<div class="questao"> 
+		<div class="questao">
 			<div class="titulo-da-questao">
-				<p>${quizzEscolhido.title}</p>
+				<p>>${quizzEscolhido.title}</p>
 			</div>
-		`
-		for (let c = 0; c < quizzEscolhido.questions[i].answers.length; c++){
-			telaQuizz.innerHTML += `
 			<div class="opcoes">
 				<div class="opcao">
-					<img src="${quizzEscolhido.questions[i].answers[c].image} ${i} ${c}">
-					<p>${quizzEscolhido.questions[i].answers[c].text}</p>
+					<img src="${quizzEscolhido.questions[i].answers[0].image}">
+					<p>${quizzEscolhido.questions[i].answers[0].text}</p>
 				</div>
-		   `
-		}
-	
-	
+				<div class="opcao">
+					<img src="${quizzEscolhido.questions[i].answers[1].image}">
+					<p>${quizzEscolhido.questions[i].answers[1].text}</p>
+				</div>
+				<div class="opcao">
+					<img src="${quizzEscolhido.questions[i].answers[2].image}">
+					<p>${quizzEscolhido.questions[i].answers[2].text}</p>
+				</div>
+				<div class="opcao">
+					<img src="${quizzEscolhido.questions[i].answers[3].image}">
+					<p>${quizzEscolhido.questions[i].answers[3].text}</p>
+				</div>
+			</div>
+		</div>
+		`
 	}
+	
+	telaQuizz.innerHTML += '</div>'
 	console.log(telaQuizz.innerHTML)
-
-	//<div class="titulo-da-questao">
-	// 
-	//
 }
 function vaiParaCriacaoQuiz(){
     document.querySelector('.tela-quizzes-disponiveis').classList.add('escondido');
