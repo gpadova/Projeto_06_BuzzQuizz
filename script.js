@@ -12,9 +12,9 @@ let escolherTitulo;
 let escolherImagem;
 let nDePerguntas;
 let nDeNiveis;
-let arrayPerguntas;
-let arrayNiveis;
-const arrayLocalStorage = [];
+let arrayPerguntas = [];
+let arrayNiveis = [];
+const arrayLocalStorage = []
 
 
 function verificarQualDisplayInicial(){
@@ -102,6 +102,7 @@ function vaiParaCriacaoQuiz(){
     document.querySelector('.tela-quizzes-disponiveis').classList.add('escondido');
     document.querySelector('.todos-os-quizzes').classList.add('escondido');
     document.querySelector('.tela-de-informacoes-quizz').classList.remove('escondido');
+	document.querySelector('.criando-quizz').classList.remove('escondido');
 }
 
 function validoURL(str) {
@@ -115,14 +116,19 @@ function validoURL(str) {
 
 function carregarCriarPerguntas(){
 	let everythingOK=true;
+	console.log( everythingOK)
 	escolherTitulo = document.querySelector(".titulo-do-quizz").value;
 	if (escolherTitulo.length <20 || escolherTitulo.length >65) everythingOK = false;
+	console.log( everythingOK)
     escolherImagem = document.querySelector(".url-da-imagem-quizz").value;
 	if (validoURL(escolherImagem) == false) everythingOK = false;
+	console.log( everythingOK)
     nDePerguntas = document.querySelector(".quantidade-perguntas-quizz").value;
 	if(nDePerguntas < 3) everythingOK = false;
+	console.log( everythingOK)
     nDeNiveis = document.querySelector(".quantidade-niveis-quizz").value;
 	if (nDeNiveis < 2) everythingOK = false;
+	console.log( everythingOK)
 	if (everythingOK == true){
 		const infoCriarQuizz = document.querySelector(".tela-de-informacoes-quizz");
 		infoCriarQuizz.classList.add("escondido");
@@ -142,22 +148,22 @@ function criarPerguntasHTML(){
 		<div class="caixaPergunta caixaPergunta${i}">
 			<p class="pergunta pergunta${i}">Pergunta ${i}</p>
 			<ion-icon name="create-outline"></ion-icon>
-			<input type="text" class="texto-da-pergunta${i}" placeholder="Texto da pergunta">
-			<input type="text" class="cor-do-fundo-pergunta${i}" placeholder="Cor de fundo da pergunta">
+			<input type="text" class="texto-da-pergunta${i}" placeholder="Texto da pergunta (minimo 20 caracteres)">
+			<input type="color" class="cor-do-fundo-pergunta${i}" placeholder="Cor de fundo da pergunta">
 		
 			<div class="resposta-correta">
 				<p class="resposta-correta">Resposta correta</p>
-				<input type="text" class="texto-da-pergunta resposta-correta${i}" placeholder="Resposta correta">
-				<input type="text" class="url-da-imagem-correta${i}" placeholder="URL da imagem">
+				<input type="text" class="texto-da-pergunta resposta-correta${i}" placeholder="Resposta correta (obrigatoria)">
+				<input type="url" class="url-da-imagem-correta${i}" placeholder="URL da imagem correta (obrigatoria)">
 			</div>
 			<div class="resposta-incorreta">
-				<p class="resposta-incorreta">Resposta correta</p>
-				<input type="text" class="resposta-incorreta-1${i}" placeholder="Resposta incorreta 1">
-				<input type="text" class="url-imagem-incorreta${i}" placeholder="URL da imagem 1 ">
+				<p class="resposta-incorreta">Respostas incorretas</p>
+				<input type="text" class="resposta-incorreta-1${i}" placeholder="Resposta incorreta 1 (obrigatoria)">
+				<input type="url" class="url-imagem-incorreta-1${i}" placeholder="URL da imagem 1 (obgrigatoria)">
 				<input type="text" class="resposta-incorreta-2${i}" placeholder="Resposta incorreta 2">
-				<input type="text" class="url-imagem-incorreta-2${i}" placeholder="URL da imagem 2">
+				<input type="url" class="url-imagem-incorreta-2${i}" placeholder="URL da imagem 2">
 				<input type="text" class="resposta-incorreta-3${i}" placeholder="Resposta incorreta 3">
-				<input type="text" class="url-imagem-incorreta-3${i}" placeholder="URL de imagem 3">
+				<input type="url" class="url-imagem-incorreta-3${i}" placeholder="URL de imagem 3">
 			</div>
 		</div>
 		`
@@ -168,12 +174,13 @@ function criarPerguntasHTML(){
 function lerInputCriarPerguntas(){
 	let everythingOK=true;
 	for (i = 1; i <= nDePerguntas; i++){
-		let arrayRespostas;
+		let arrayRespostas=[];
 		arrayRespostas[0] = {
 			text: document.querySelector(`.resposta-correta${i}`).value,
 			image: document.querySelector(`.url-da-imagem-correta${i}`).value,
 			isCorrectAnswer: true
 		}
+		if (arrayRespostas[0].text == null || validoURL(arrayRespostas[0].image) == false)everythingOK = false;
 		for (cont = 1; cont <=3; cont++){
 			const res = document.querySelector(`.resposta-incorreta-${cont}${i}`).value;
 			const img = document.querySelector(`.url-imagem-incorreta-${cont}${i}`).value;
@@ -184,14 +191,17 @@ function lerInputCriarPerguntas(){
 					isCorrectAnswer: false
 				}
 				arrayRespostas.push(member);
+				if (arrayRespostas[1].text == null || validoURL(arrayRespostas[1].image) == false)everythingOK = false;
 			}
 
 		}
+		if (document.querySelector(`.texto-da-pergunta${1}`).value.length<20)everythingOK=false;
 		arrayPerguntas[i-1] = {
 			title: document.querySelector(`.texto-da-pergunta${1}`).value,
 			color: document.querySelector(`.cor-do-fundo-pergunta${i}`).value,
 			answers: arrayRespostas
 		}
+		console.log(arrayPerguntas)
 	}
 	if (everythingOK == true){
 		const paginaCriarPerguntas= document.querySelector(".criando-perguntas-quizz");
@@ -213,10 +223,10 @@ function carregarCriarNiveis(){
 	<div class="nivel${i}">
 		<p>Nível ${i}</p>
 		<ion-icon name="create-outline"></ion-icon>
-		<input type="text" class="titulo-nivel${i}" placeholder="Título do nível">
+		<input type="text" class="titulo-nivel${i}" placeholder="Título do nível (minimo 10 caracteres)">
 		<input type="number" class="porcentagem-minima${i}" placeholder="% de acerto mínima">
 		<input type="url" class="url-imagem-nivel${i}" placeholder="URL da imagem do nível">
-		<input type="text" class="descricao-nivel${i}" placeholder="Descrição do nível">
+		<input type="text" class="descricao-nivel${i}" placeholder="Descrição do nível (minimo 30 caracteres)">
 	</div>
 	`
 	}
@@ -224,10 +234,14 @@ function carregarCriarNiveis(){
 
 function lerInputCriarNiveis(){
 	let everythingOK=true;
+	let existeZero=false;
 	for(i = 1; i<=nDeNiveis;i++){
 		const titleCheck = document.querySelector(`.titulo-nivel${i}`).value;
+		if(textCheck.length<10)everythingOK=false;
 		const imageCheck =document.querySelector(`.url-imagem-nivel${i}`).value;
+		if(validoURL(imageCheck) == false)everythingOK=false;
 		const textCheck = document.querySelector(`.descricao-nivel${i}`).value;
+		if(textCheck.length<30)everythingOK=false;
 		const minValueCheck = parseInt(document.querySelector(`.porcentagem-minima${i}`).value);
 		arrayNiveis[i-1] = {
 			title: document.querySelector(`.titulo-nivel${i}`).value,
@@ -235,13 +249,14 @@ function lerInputCriarNiveis(){
 			text: document.querySelector(`.descricao-nivel${i}`).value,
 			minValue: parseInt(document.querySelector(`.porcentagem-minima${i}`).value),
 		}
-		
+		if(arrayNiveis[i-1].minValue == 0)existeZero=true;
 	}
+	if (existeZero == false) everythingOK =false;
 	if (everythingOK == true){
 		const paginaCriarNiveis= document.querySelector(".niveis-quizz");
 		paginaCriarNiveis.classList.add("escondido");
 		const paginaQuizzPronto = document.querySelector(".quizz-esta-pronto");
-		paginaCriarNiveis.classList.remove("escondido");
+		paginaQuizzPronto.classList.remove("escondido");
 		carregarCriarQuizzPronto()
 	}
 	else{
@@ -250,11 +265,24 @@ function lerInputCriarNiveis(){
 }
 
 function carregarCriarQuizzPronto(){
+
 	quizzCriado = {
 		title: escolherTitulo,
 		image: escolherImagem,
 		questions: arrayPerguntas,
 		levels: arrayNiveis,
 	}
-	//fazer upload usando axios
+	
+}
+
+function uploadQuizzNaApi(){
+	const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', 
+	quizzCriado = {
+		title: escolherTitulo,
+		image: escolherImagem,
+		questions: arrayPerguntas,
+		levels: arrayNiveis,
+	})
+	promessa.then(alert('Enviado com sucesso!'))
+	promessa.catch(alert('Erro no envio'))
 }

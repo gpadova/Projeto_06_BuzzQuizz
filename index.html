@@ -125,7 +125,7 @@
         </div> 
     </div>
 
-    <div class="tela-de-informacoes-quizz escondido">
+    <!-- <div class="tela-de-informacoes-quizz escondido">
         <div class="comece-pelo-comeco">
             <p>Comece pelo Começo</p>
         </div>
@@ -133,13 +133,13 @@
             <input class="titulo-do-quizz" placeholder="Título do seu quizz">
             <input class="url-da-imagem-quizz" placeholder="URL da imagem do seu quizz">
             <input class="quantidade-perguntas-quizz" placeholder="Quantidade de perguntas do quiz">
-            <input class="quantidade-niveis-quiz" placeholder="Quantidade de níveis do quizz">
+            <input class="quantidade-niveis-quizz" placeholder="Quantidade de níveis do quizz">
             
         </div>
-        <div class="prosseguir-para-quizz">
+        <div class="prosseguir-para-quizz" onclick="carregarCriarPerguntas()">
             Prosseguir para criar perguntas
         </div>
-    </div>
+    </div> -->
 
     <div class="criando-quizz escondido">
         <div class="tela-de-informacoes-quizz escondido">
@@ -147,10 +147,10 @@
                 <p>Comece pelo Começo</p>
             </div>
             <div class="info-do-quizz">
-                <input class="titulo-do-quizz" placeholder="Título do seu quizz">
-                <input class="url-da-imagem-quizz" placeholder="URL da imagem do seu quizz">
-                <input class="quantidade-perguntas-quizz" placeholder="Quantidade de perguntas do quiz">
-                <input class="quantidade-niveis-quiz" placeholder="Quantidade de níveis do quizz">
+                <input class="titulo-do-quizz" placeholder="Título do seu quizz (entre 20 e 65 caracteres)">
+                <input type="url" class="url-da-imagem-quizz" placeholder="URL da imagem do seu quizz">
+                <input type="number" min="3" class="quantidade-perguntas-quizz" placeholder="Quantidade de perguntas do quiz (minimo 3)">
+                <input type='number' min="2" class="quantidade-niveis-quizz" placeholder="Quantidade de níveis do quizz (minimo 2)">
                 
             </div>
             <div class="prosseguir-para-quizz" onclick="carregarCriarPerguntas()">
@@ -178,7 +178,10 @@
     
         <div class="quizz-esta-pronto escondido">
             <p>Seu quiz está pronto!</p>
-            <div class="imagem-e-titulo"><p>Título do Quiz récem criado</p></div>
+            <div class="imagem-e-titulo">
+                <p>Título do Quiz récem criado</p>
+                <img src="https://m.media-amazon.com/images/I/71dAlD7MOuL._AC_SL1499_.jpg" alt="">
+            </div>
             <div class="acessa-quizz">Acessar o quiz</div>
             <div class="voltar-para-home">Voltar para home</div>
         </div>
