@@ -163,7 +163,7 @@ body{
     position: relative;
     width: 100%;
     height: 227px;
-    filter: brightness(0.3);
+    filter: brightness(0.4);
 }
 
 .nome-do-quizz p{
@@ -224,15 +224,22 @@ body{
     font-size: 20px;
     font-weight: 700;
     margin-top: 24px;
+    position: relative;
 }
 
 .opcao img{
     width: 330px;
     height: 175px;
+    border-radius: 5px;
+}
+
+.esbranquicar{
+    filter: opacity(0.5);
 }
 
 .opcao p{
     margin: 12px 0;
+    z-index: 1;
 }
 
 .comece-pelo-comeco, .crie-suas-perguntas{
@@ -463,6 +470,14 @@ body{
 }
 .escondido{
     display: none;
+}
+
+.certo p{
+    color: green;
+}
+
+.errado p{
+    color: red;
 }
 
 @media(max-width: 1100px) {
