@@ -67,7 +67,8 @@ function escolherQuizz(escolha){
         }
     }
     paginaDosQuizzes.classList.add('escondido');
-	quizz.classList.remove('escondido');
+	telaQuizz.classList.remove('escondido');
+	document.querySelector('.tela-quizzes-disponiveis').classList.add('escondido')
 	mostrarQuizz();
 }
 
@@ -237,11 +238,12 @@ function lerInputCriarNiveis(){
 		questions: arrayPerguntas,
 		levels: arrayNiveis
 	}
-
+	console.log(quizzCriado)
 	}
 	else{
 		alert("Preencha os dados corretamente, por favor.")
 	}
+	uploadQuizzNaApi()
 }
 
 
@@ -254,7 +256,11 @@ function uploadQuizzNaApi(){
 function insereQuizzNoLocalStorage(quizz){
 	alert('Enviado com sucesso!')
 	localStorage.setItem('quizzLocal', JSON.stringify(quizz))
+	console.log(quizz)
+	console.log(quizzCriado)
 }
+
+
 
 function mostrarQuizz(){
 	console.log(quizzEscolhido)
