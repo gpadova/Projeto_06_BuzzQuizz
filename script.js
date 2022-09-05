@@ -111,26 +111,28 @@ function carregarCriarPerguntas(){
 	}
 	
 }
+function expandir(){
+
+}
 function criarPerguntasHTML(){
 	const listaPerguntas = document.querySelector(".caixa-das-perguntas");
 	for (i = 1; i <= nDePerguntas; i++){
 		listaPerguntas.innerHTML = listaPerguntas.innerHTML + 
 		`
-		<div class="caixaPergunta caixaPergunta${i}">
+		<div class="caixaPergunta caixaPergunta${i}" data-identifier="question-form">
 			<p class="pergunta pergunta${i}">Pergunta ${i}</p>
-			<ion-icon name="create-outline"></ion-icon>
-			<input type="text" class="texto-da-pergunta${i}" placeholder="Texto da pergunta (minimo 20 caracteres)">
+			<ion-icon name="create-outline" data-identifier="expand"></ion-icon>
+			<input type="text" class="texto-da-pergunta${i}" placeholder="Texto da pergunta">
 			<input type="color" class="cor-do-fundo-pergunta${i}" placeholder="Cor de fundo da pergunta">
 		
 			<div class="resposta-correta">
 				<p class="resposta-correta">Resposta correta</p>
-				<input type="text" class="texto-da-pergunta resposta-correta${i}" placeholder="Resposta correta (obrigatoria)">
-				<input type="url" class="url-da-imagem-correta${i}" placeholder="URL da imagem correta (obrigatoria)">
-			</div>
+				<input type="text" class="texto-da-pergunta resposta-correta${i}" placeholder="Resposta correta">
+				<input type="url" class="url-da-imagem-correta${i}" placeholder="URL da imagem correta
 			<div class="resposta-incorreta">
 				<p class="resposta-incorreta">Respostas incorretas</p>
-				<input type="text" class="resposta-incorreta-1${i}" placeholder="Resposta incorreta 1 (obrigatoria)">
-				<input type="url" class="url-imagem-incorreta-1${i}" placeholder="URL da imagem 1 (obgrigatoria)">
+				<input type="text" class="resposta-incorreta-1${i}" placeholder="Resposta incorreta 1">
+				<input type="url" class="url-imagem-incorreta-1${i}" placeholder="URL da imagem 1">
 				<input type="text" class="resposta-incorreta-2${i}" placeholder="Resposta incorreta 2">
 				<input type="url" class="url-imagem-incorreta-2${i}" placeholder="URL da imagem 2">
 				<input type="text" class="resposta-incorreta-3${i}" placeholder="Resposta incorreta 3">
@@ -191,13 +193,13 @@ function carregarCriarNiveis(){
 	{
 	listaNiveis.innerHTML +=
 	`
-	<div class="nivel${i}">
+	<div class="nivel${i}" data-identifier="level">
 		<p>Nível ${i}</p>
-		<ion-icon name="create-outline"></ion-icon>
-		<input type="text" class="titulo-nivel${i}" placeholder="Título do nível (minimo 10 caracteres)">
+		<ion-icon name="create-outline" data-identifier="expand"></ion-icon>
+		<input type="text" class="titulo-nivel${i}" placeholder="Título do nível">
 		<input type="number" class="porcentagem-minima${i}" placeholder="% de acerto mínima">
 		<input type="url" class="url-imagem-nivel${i}" placeholder="URL da imagem do nível">
-		<input type="text" class="descricao-nivel${i}" placeholder="Descrição do nível (minimo 30 caracteres)">
+		<input type="text" class="descricao-nivel${i}" placeholder="Descrição do nível">
 	</div>
 	`;
 	}
@@ -293,24 +295,24 @@ function mostrarQuizz(){
 		quizzEscolhido.questions[i].answers.sort(comparador);
 
 		quizz.innerHTML += `
-		<div class="questao">
+		<div class="questao" data-identifier="question">
 			<div class="titulo-da-questao cor-do-titulo${i}">
 				<p>>${quizzEscolhido.questions[i].title}</p>
 			</div>
 			<div class="opcoes">
-				<div id="${quizzEscolhido.questions[i].answers[0].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[0].isCorrectAnswer}" class="opcao botao" data-identifier="answer" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[0].image}">
 					<p>${quizzEscolhido.questions[i].answers[0].text}</p>	
 				</div>
-				<div id="${quizzEscolhido.questions[i].answers[1].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[1].isCorrectAnswer}" class="opcao botao" data-identifier="answer" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[1].image}">
 					<p>${quizzEscolhido.questions[i].answers[1].text}</p>
 				</div>
-				<div id="${quizzEscolhido.questions[i].answers[2].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[2].isCorrectAnswer}" class="opcao botao" data-identifier="answer" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[2].image}">
 					<p>${quizzEscolhido.questions[i].answers[2].text}</p>
 				</div>
-				<div id="${quizzEscolhido.questions[i].answers[3].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[3].isCorrectAnswer}" class="opcao botao" data-identifier="answer" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[3].image}">
 					<p>${quizzEscolhido.questions[i].answers[3].text}</p>
 				</div>
