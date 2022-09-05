@@ -3,6 +3,7 @@ const paginaDosQuizzes = lugarQuizesServidor.parentNode;
 let telaQuizz = document.querySelector('.tela-quizz')
 let quizz = document.querySelector('.quizz');
 let resultado = document.querySelector('.resultado')
+let reiniciar = document.querySelector('.reiniciar-quizz')
 let arrayDeDados = [];
 let quizzEscolhido;
 
@@ -48,9 +49,9 @@ function disponibilizarQuizzesNaTela(resposta){
     const lugarQuizesServidor = document.querySelector(".fotos-todos-quizzes");
     document.querySelector('.todos-os-quizzes').classList.remove("escondido");
     
-    for(let i = 0; i < 50; i++){
+    for(let i = 0; i < 6; i++){
         lugarQuizesServidor.innerHTML += `
-        <div id="${resposta.data[i].id}" class="imagem-do-quiz" onclick="escolherQuizz(this);">
+        <div id="${resposta.data[i].id}" class="imagem-do-quiz botao" onclick="escolherQuizz(this);">
             <img src="${resposta.data[i].image}" alt="">
             <div class="texto-em-cima-foto">${resposta.data[i].title}</div>
         </div>
@@ -277,6 +278,7 @@ function mostrarQuizz(){
 	scrollUp();
 
     quizz.classList.remove('escondido');
+	reiniciar.classList.remove('escondido')
 	function comparador() { 
 		return Math.random() - 0.5; 
 	}
@@ -296,19 +298,19 @@ function mostrarQuizz(){
 				<p>>${quizzEscolhido.questions[i].title}</p>
 			</div>
 			<div class="opcoes">
-				<div id="${quizzEscolhido.questions[i].answers[0].isCorrectAnswer}" class="opcao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[0].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[0].image}">
 					<p>${quizzEscolhido.questions[i].answers[0].text}</p>	
 				</div>
-				<div id="${quizzEscolhido.questions[i].answers[1].isCorrectAnswer}" class="opcao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[1].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[1].image}">
 					<p>${quizzEscolhido.questions[i].answers[1].text}</p>
 				</div>
-				<div id="${quizzEscolhido.questions[i].answers[2].isCorrectAnswer}" class="opcao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[2].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[2].image}">
 					<p>${quizzEscolhido.questions[i].answers[2].text}</p>
 				</div>
-				<div id="${quizzEscolhido.questions[i].answers[3].isCorrectAnswer}" class="opcao" onclick="EscolhaResposta(this);">
+				<div id="${quizzEscolhido.questions[i].answers[3].isCorrectAnswer}" class="opcao botao" onclick="EscolhaResposta(this);">
 					<img src="${quizzEscolhido.questions[i].answers[3].image}">
 					<p>${quizzEscolhido.questions[i].answers[3].text}</p>
 				</div>
@@ -316,8 +318,7 @@ function mostrarQuizz(){
 		</div>
 		`;
 
-		let cor = quizz.querySelector(`.cor-do-titulo${i}`).style.backgroundColor=`${quizzEscolhido.questions[i].color}`;
-		console.log(cor)
+		quizz.querySelector(`.cor-do-titulo${i}`).style.backgroundColor=`${quizzEscolhido.questions[i].color}`;
 	}
 }
 
@@ -325,32 +326,31 @@ function mostrarQuizz(){
 function EscolhaResposta(escolhido){
 	jogadas += 1;
 	escolhido.classList.add('escolhido');
-	console.log(escolhido);
 	let alternativas = escolhido.parentNode.querySelectorAll('.opcao');
 	escolhido= escolhido.innerHTML;
 	alternativas.forEach(element => {
-		console.log(element);
 		if(element.id == 'true'){
 			element.classList.add('certo');
 		}else{
 			element.classList.add('errado');
 		}
-		if (element.classList.contains('escolhido')){
-			console.log('escolhido');
-		}else{
+		if (!element.classList.contains('escolhido')){
 			element.classList.add('esbranquicar');
-			console.log(element);
 		}
 		if (element.classList.contains('certo') && (element.classList.contains('escolhido'))){
 			listaDeAcertos.push(element.id);
 		}
 	});
 
+	
+	console.log(quizzEscolhido.questions.length)
+	console.log(jogadas)
 	setTimeout(scrollDown, 2000);
 	if(jogadas == (quizzEscolhido.questions.length)){
-		resultado.classList.remove('escondido');
+		
 		porcentagem  = listaDeAcertos.length / quizzEscolhido.questions.length;
 		porcentagem = porcentagem * 100
+		console.log(porcentagem)
 		nota = Math.ceil(porcentagem)
 		nivel()
 
@@ -360,10 +360,14 @@ function EscolhaResposta(escolhido){
 
 function nivel(){
 	notaFinal = 0;
+	resultado.classList.remove('escondido');
 	for (let i = 0; i < quizzEscolhido.levels.length; i++){
 		let valorMinimo = Number(quizzEscolhido.levels[i].minValue);
-		if (nota >= valorMinimo){
-			let notaFinal = valorMinimo;
+		notaFinal = valorMinimo
+		if ((nota == 0) || (nota > notaFinal)){
+			notaFinal = nota;
+			console.log([i])
+			console.log(nota)
 			console.log(notaFinal);
 			resultado.innerHTML = `
 			<div class="titulo-resultado">
@@ -374,6 +378,7 @@ function nivel(){
 				<p>${quizzEscolhido.levels[i].text}</p>
 			</div>
 			`
+			console.log(resultado.innerHTML)
 		}
 	}
 	
@@ -385,4 +390,15 @@ function scrollDown(){
 
 function scrollUp(){
 	window.scrollBy(0,-1000);
+}
+
+function reiniciarQuizz(botaoDeReiniciar){
+	console.log(botaoDeReiniciar)
+	resultado.classList.add('escondido')
+	quizz.innerHTML = ''
+	resultado.innerHTML = ''
+	nota = 0;
+	jogadas = 0;
+	notaFinal = 0;
+	mostrarQuizz()
 }
