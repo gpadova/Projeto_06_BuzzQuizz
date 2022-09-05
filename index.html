@@ -18,14 +18,14 @@
         </div>
         <div class="tela-quizzes-disponiveis">
             <div class="conteudo">
-                <div class="sem-quizz-criado escondido">
+                <div class="sem-quizz-criado">
                     <h2>Você ainda não criou nenhum quizz ainda ):</h2>
-                    <p onclick="vaiParaCriacaoQuiz()">Criar quiz</p>
+                    <p class ='botao' onclick="vaiParaCriacaoQuiz()">Criar quizz</p>
                 </div>
-                <div class="seus-quizzes escondido">
+                <div class="seus-quizzes">
                     <div class="todos-seus-quizzes ">
                         <p>Seus Quizzes</p>
-                        <ion-icon name="add-circle" onclick="vaiParaCriacaoQuiz()"></ion-icon>
+                        <ion-icon class ='botao' name="add-circle" onclick="vaiParaCriacaoQuiz()"></ion-icon>
                     </div>
                     <div class="imagens-seus-quizzes">
                         <!-- <div class="imagem-do-quizz">
@@ -43,48 +43,28 @@
         <div class="todos-os-quizzes">
             <p>Todos os Quizzes</p>
             <div class="fotos-todos-quizzes">
-                <!-- <div class="imagem-do-quizz">
-                    <img src="./images/coquinha_gelada 1.png" alt="">
-                    <div class="texto-em-cima-foto">Titulo do quizz</div>
-                </div>
-                <div class="imagem-do-quizz">
-                    <img src="./images/coquinha_gelada 1.png" alt="">
-                    <div class="texto-em-cima-foto">Titulo do quizz</div>
-                </div>
-                <div class="imagem-do-quizz">
-                    <img src="./images/coquinha_gelada 1.png" alt="">
-                    <div class="texto-em-cima-foto">Titulo do quizz</div>
-                </div>
-                <div class="imagem-do-quizz">
-                    <img src="./images/coquinha_gelada 1.png" alt="">
-                    <div class="texto-em-cima-foto">Titulo do quizz</div>
-                </div>
-                <div class="imagem-do-quizz">
-                    <img src="./images/coquinha_gelada 1.png" alt="">
-                    <div class="texto-em-cima-foto">Titulo do quizz</div>
-                </div>
-                <div class="imagem-do-quizz">
-                    <img src="./images/coquinha_gelada 1.png" alt="">
-                    <div class="texto-em-cima-foto">Titulo do quizz</div>
-                </div>                         -->
             </div>
         </div>
         <div class="tela-quizz">
             <div class="quizz">
             </div>
             <div class="resultado escondido">
-                <div class="titulo-resultado">
+                <!-- <div class="titulo-resultado">
                     <p>88% de acerto: Você é praticamente um aluno de Hogwarts</p>
                 </div>
                 <div class="conteudo-resultado">
                     <img src="./images/image 10.png" alt="resultado">
                     <p>Parabéns Potterhead! Bem-vindx a Hogwarts, aproveite o loop infinito de comida e clique no botão abaixo para usar o vira-tempo e reiniciar este teste.</p>
-                </div>
+                </div> -->
             </div>
+            <div class="reiniciar-quizz botao escondido" onclick="reiniciarQuizz(this);">
+                <p >Reiniciar Quizz</p>
+            </div>
+            <div class="voltar-para-home botao" onclick = "window.location.reload()">Voltar para home</div>
         </div> 
     </div>
 
-    <!-- <div class="tela-de-informacoes-quizz escondido">
+    <!-- <div class="tela-de-informacoes-quizz">
         <div class="comece-pelo-comeco">
             <p>Comece pelo Começo</p>
         </div>
@@ -101,7 +81,7 @@
     </div> -->
 
     <div class="criando-quizz escondido">
-        <div class="tela-de-informacoes-quizz escondido">
+        <div class="tela-de-informacoes-quizz">
             <div class="comece-pelo-comeco">
                 <p>Comece pelo Começo</p>
             </div>
@@ -112,35 +92,35 @@
                 <input type='number' min="2" class="quantidade-niveis-quizz" placeholder="Quantidade de níveis do quizz (minimo 2)">
                 
             </div>
-            <div class="prosseguir-para-quizz" onclick="carregarCriarPerguntas()">
+            <div class="prosseguir-para-quizz botao" onclick="carregarCriarPerguntas()">
                 Prosseguir para criar perguntas
             </div>
         </div>
     
-        <div class="criando-perguntas-quizz escondido">
+        <div class="criando-perguntas-quizz">
             <div class="crie-suas-perguntas">Crie suas peguntas</div>
             <div class="caixa-das-perguntas">
             </div>
             <div class="prosseguir-pra-criar-niveis" onclick=" lerInputCriarPerguntas()">
-                <p>Prosseguir pra criar níveis </p>
+                <p class ='botao' >Prosseguir pra criar níveis </p>
             </div>
         </div> 
     
-        <div class="niveis-quizz escondido">
+        <div class="niveis-quizz">
             <p>Agora decida os níveis</p>
             <div class="caixa-info-niveis">
             </div>
-            <div class="finalizar-quizz" onclick = "lerInputCriarNiveis()">
+            <div class="finalizar-quizz botao" onclick = "lerInputCriarNiveis()">
                 <p>Finalizar Quizz</p>
             </div>
         </div>
     
-        <div class="quizz-esta-pronto escondido">
+        <div class="quizz-esta-pronto">
             <p>Seu quiz está pronto!</p>
             <div class="imagem-e-titulo">
             </div>
-            <div class="acessa-quizz">Acessar o quiz</div>
-            <div class="voltar-para-home" onclick = "window.location.reload()">Voltar para home</div>
+            <div class="acessa-quizz botao">Acessar o quiz</div>
+            <div class="voltar-para-home botao" onclick = "window.location.reload()">Voltar para home</div>
         </div>
     </div>
     
