@@ -1,8 +1,11 @@
 const lugarQuizesServidor = document.querySelector(".fotos-todos-quizzes");
 const paginaDosQuizzes = lugarQuizesServidor.parentNode;
-let telaQuizz = document.querySelector('.quizz');
+let telaQuizz = document.querySelector('.tela-quizz')
+let quizz = document.querySelector('.quizz');
+let resultado = document.querySelector('.resultado')
 let arrayDeDados = [];
 let quizzEscolhido;
+
 
 
 const promessa = axios.get("https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes");
@@ -12,6 +15,9 @@ let escolherTitulo;
 let escolherImagem;
 let nDePerguntas;
 let nDeNiveis;
+let nota = 0;
+let jogadas = 0;
+let porcentagem = 0;
 let arrayPerguntas = [];
 let arrayNiveis = [];
 const arrayLocalStorage = [];
@@ -26,7 +32,7 @@ function verificarQualDisplayInicial(){
         document.querySelector('.seus-quizzes').classList.remove('escondido');
         // listaQuizzesLocais();
     }else{
-		document.querySelector('.sem-quizz-criado').classList.remove('escondido')
+		document.querySelector('.sem-quizz-criado').classList.remove('escondido');
 	}
 }
 verificarQualDisplayInicial();
@@ -61,7 +67,7 @@ function escolherQuizz(escolha){
         }
     }
     paginaDosQuizzes.classList.add('escondido');
-	telaQuizz.classList.remove('escondido');
+	quizz.classList.remove('escondido');
 	mostrarQuizz();
 }
 
@@ -251,15 +257,16 @@ function insereQuizzNoLocalStorage(quizz){
 }
 
 function mostrarQuizz(){
-
+	console.log(quizzEscolhido)
+	document.querySelector('.sem-quizz-criado').classList.add('escondido')
 	scrollUp();
 
-    telaQuizz.classList.remove('escondido');
+    quizz.classList.remove('escondido');
 	function comparador() { 
 		return Math.random() - 0.5; 
 	}
 
-	telaQuizz.innerHTML += `
+	quizz.innerHTML += `
 		<div class="nome-do-quizz">
 			<img src="${quizzEscolhido.image}" alt="">
 			<p>${quizzEscolhido.title}</p>
@@ -267,9 +274,10 @@ function mostrarQuizz(){
 	`;
 	for (let i = 0; i < quizzEscolhido.questions.length; i++){
 		quizzEscolhido.questions[i].answers.sort(comparador);
-		telaQuizz.innerHTML += `
+
+		quizz.innerHTML += `
 		<div class="questao">
-			<div class="titulo-da-questao">
+			<div class="titulo-da-questao cor-do-titulo${i}">
 				<p>>${quizzEscolhido.questions[i].title}</p>
 			</div>
 			<div class="opcoes">
@@ -292,11 +300,15 @@ function mostrarQuizz(){
 			</div>
 		</div>
 		`;
+
+		let cor = quizz.querySelector(`.cor-do-titulo${i}`).style.backgroundColor=`${quizzEscolhido.questions[i].color}`;
+		console.log(cor)
 	}
 }
 
 
 function EscolhaResposta(escolhido){
+	jogadas += 1;
 	escolhido.classList.add('escolhido');
 	console.log(escolhido);
 	let alternativas = escolhido.parentNode.querySelectorAll('.opcao');
@@ -318,13 +330,42 @@ function EscolhaResposta(escolhido){
 			listaDeAcertos.push(element.id);
 		}
 	});
-	
-	console.log(listaDeAcertos);
+
 	setTimeout(scrollDown, 2000);
+	if(jogadas == (quizzEscolhido.questions.length)){
+		resultado.classList.remove('escondido');
+		porcentagem  = listaDeAcertos.length / quizzEscolhido.questions.length;
+		porcentagem = porcentagem * 100
+		nota = Math.ceil(porcentagem)
+		nivel()
+
+	}
+	
+}
+
+function nivel(){
+	notaFinal = 0;
+	for (let i = 0; i < quizzEscolhido.levels.length; i++){
+		let valorMinimo = Number(quizzEscolhido.levels[i].minValue);
+		if (nota >= valorMinimo){
+			let notaFinal = valorMinimo;
+			console.log(notaFinal);
+			resultado.innerHTML = `
+			<div class="titulo-resultado">
+				<p>${notaFinal} de acerto: ${quizzEscolhido.levels[i].title}</p>
+			</div>
+			<div class="conteudo-resultado">
+				<img src="${quizzEscolhido.levels[i].image}" alt="resultado">
+				<p>${quizzEscolhido.levels[i].text}</p>
+			</div>
+			`
+		}
+	}
+	
 }
 
 function scrollDown(){
-	window.scrollBy(0, 650);
+	window.scrollBy(0, 800);
 }
 
 function scrollUp(){
