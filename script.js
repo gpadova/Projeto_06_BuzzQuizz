@@ -166,9 +166,9 @@ function lerInputCriarPerguntas(){
 			}
 
 		}
-		if (document.querySelector(`.texto-da-pergunta${1}`).value.length<20)everythingOK=false;
+		if (document.querySelector(`.texto-da-pergunta${i}`).value.length<20)everythingOK=false;
 		arrayPerguntas[i-1] = {
-			title: document.querySelector(`.texto-da-pergunta${1}`).value,
+			title: document.querySelector(`.texto-da-pergunta${i}`).value,
 			color: document.querySelector(`.cor-do-fundo-pergunta${i}`).value,
 			answers: arrayRespostas
 		}
@@ -210,17 +210,25 @@ function lerInputCriarNiveis(){
 		let urlDescricao = document.querySelector(`.url-imagem-nivel${i}`).value;
 		let minValueCheck = parseInt(document.querySelector(`.porcentagem-minima${i}`).value);
 		let descricaoNivel = document.querySelector(`.descricao-nivel${i}`).value;
-		// if(descricaoNivel.length<10){everythingOK=false};
-		// if(validoURL(urlDescricao) === false){everythingOK=false};
-		// if(descricaoNivel.length>30)everythingOK=false;
+		if(descricaoNivel.length<10){everythingOK=false};
+		console.log(descricaoNivel.length)
+		if(validoURL(urlDescricao) == false){everythingOK=false};
+		console.log(validoURL(urlDescricao))
+		if(descricaoNivel.length>30)everythingOK=false;
+		console.log(descricaoNivel.length)
 		arrayNiveis[i-1] = {
 			title: tituloDescricao,
 			image: urlDescricao,
 			descricao: descricaoNivel,
 			minValue: minValueCheck
 		}
-		// if(arrayNiveis[i-1].minValue == 0){existeZero=true};
+		console.log(arrayNiveis[i-1].minValue)
+		if(arrayNiveis[i-1].minValue == 0){existeZero=true};
 	}
+	console.log("titulo" + escolherTitulo)
+	console.log("imagem" + escolherImagem)
+	console.log("array perguntas" + arrayPerguntas)
+	console.log("array niveis" + arrayNiveis)
 	if (everythingOK == true){
 		const paginaCriarNiveis= document.querySelector(".niveis-quizz");
 		paginaCriarNiveis.classList.add("escondido");
@@ -238,7 +246,7 @@ function lerInputCriarNiveis(){
 		questions: arrayPerguntas,
 		levels: arrayNiveis
 	}
-	console.log(quizzCriado)
+	console.log("quizz criado" + quizzCriado)
 	}
 	else{
 		alert("Preencha os dados corretamente, por favor.")
@@ -249,6 +257,7 @@ function lerInputCriarNiveis(){
 
 function uploadQuizzNaApi(){
 	const promessa = axios.post('https://mock-api.driven.com.br/api/v4/buzzquizz/quizzes', quizzCriado);
+	console.log(promessa)
 	promessa.then(insereQuizzNoLocalStorage);
 	promessa.catch(alert('Erro no envio'));
 }
