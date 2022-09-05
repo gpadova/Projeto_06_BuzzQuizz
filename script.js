@@ -17,13 +17,17 @@ let arrayNiveis = [];
 const arrayLocalStorage = [];
 let listaDeAcertos = [];
 
+const quizzesLocaisDisponiveis = JSON.parse(localStorage.getItem('quizzLocal'))
+let quizzLocal = localStorage.getItem('quizzLocal') !== null ? quizzesLocaisDisponiveis : []
 
 function verificarQualDisplayInicial(){
-    document.querySelector('.tela-quizzes-disponiveis .escondido').classList.remove('escondido');
-    if(arrayLocalStorage.length !== 0){
-        document.querySelector('.seus-quizes').classList.remove('escondido');
-        listaQuizzesLocais();
-    }
+
+    if(quizzesLocaisDisponiveis=== undefined){
+        document.querySelector('.seus-quizzes').classList.remove('escondido');
+        // listaQuizzesLocais();
+    }else{
+		document.querySelector('.sem-quizz-criado').classList.remove('escondido')
+	}
 }
 verificarQualDisplayInicial();
 
@@ -47,7 +51,7 @@ function disponibilizarQuizzesNaTela(resposta){
         `;
         arrayDeDados.push(resposta.data[i]);
     }
-    console.log(resposta);
+    
 }
 
 function escolherQuizz(escolha){
@@ -85,16 +89,12 @@ function carregarCriarPerguntas(){
 	console.log( everythingOK);
 	escolherTitulo = document.querySelector(".titulo-do-quizz").value;
 	if (escolherTitulo.length <20 || escolherTitulo.length >65) everythingOK = false;
-	console.log( everythingOK);
     escolherImagem = document.querySelector(".url-da-imagem-quizz").value;
 	if (validoURL(escolherImagem) == false) everythingOK = false;
-	console.log( everythingOK);
     nDePerguntas = document.querySelector(".quantidade-perguntas-quizz").value;
 	if(nDePerguntas < 3) everythingOK = false;
-	console.log( everythingOK);
     nDeNiveis = document.querySelector(".quantidade-niveis-quizz").value;
 	if (nDeNiveis < 2) everythingOK = false;
-	console.log( everythingOK);
 	if (everythingOK == true){
 		const infoCriarQuizz = document.querySelector(".tela-de-informacoes-quizz");
 		infoCriarQuizz.classList.add("escondido");
@@ -105,6 +105,7 @@ function carregarCriarPerguntas(){
 	else{
 		alert("Preencha os dados corretamente, por favor.");
 	}
+	console.log(nDeNiveis)
 }
 function criarPerguntasHTML(){
 	const listaPerguntas = document.querySelector(".caixa-das-perguntas");
@@ -134,6 +135,7 @@ function criarPerguntasHTML(){
 		</div>
 		`;
 	}
+	scrollUp();
     
 }
 
@@ -167,7 +169,6 @@ function lerInputCriarPerguntas(){
 			color: document.querySelector(`.cor-do-fundo-pergunta${i}`).value,
 			answers: arrayRespostas
 		}
-		console.log(arrayPerguntas);
 	}
 	if (everythingOK == true){
 		const paginaCriarPerguntas= document.querySelector(".criando-perguntas-quizz");
@@ -182,9 +183,9 @@ function lerInputCriarPerguntas(){
 }
 function carregarCriarNiveis(){
 	const listaNiveis = document.querySelector(".caixa-info-niveis");
-	for(i = 1; i<=nDeNiveis;i++);
+	for(let i = 1; i <= nDeNiveis;i++);
 	{
-	listaNiveis.innerHTML = listaNiveis.innerHTML +
+	listaNiveis.innerHTML +=
 	`
 	<div class="nivel${i}">
 		<p>Nível ${i}</p>
@@ -215,7 +216,7 @@ function lerInputCriarNiveis(){
 			text: document.querySelector(`.descricao-nivel${i}`).value,
 			minValue: parseInt(document.querySelector(`.porcentagem-minima${i}`).value),
 		}
-		if(arrayNiveis[i-1].minValue == 0)existeZero=true;
+		if(arrayNiveis[i-1].minValue == 0){existeZero=true};
 	}
 	if (existeZero == false) everythingOK =false;
 	if (everythingOK == true){
@@ -250,7 +251,12 @@ function uploadQuizzNaApi(){
 		levels: arrayNiveis,
 	})
 	promessa.then(alert('Enviado com sucesso!'));
+	promessa.then(insereQuizzNoLocalStorage);
 	promessa.catch(alert('Erro no envio'));
+}
+
+function insereQuizzNoLocalStorage(){
+	localStorage.setItem('quizzLocal', JSON.stringify(quizzLocal))
 }
 
 function mostrarQuizz(){
